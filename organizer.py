@@ -19,7 +19,7 @@ class Organizer:
 
         cleaned_filetype = re.sub(r'[^a-zA-Z0-9]', '', self.filetype)
 
-        directory_files = os.listdir()
+        directory_files = os.listdir() #
         
         try:
             if not f'{cleaned_filetype}_folder' in self.directory:
@@ -39,10 +39,16 @@ class Organizer:
             print(f"Error: Directory '{directory_files}' not found.")
         except Exception as e:
             print(f'An error occured: {e}')
+    
         
 
 if __name__ == "__main__":
-    directory_m = input(f'Input the full directory path you want to target: ')
-    filetype_m = input(f'Input the filetype to target: ')
-    organizer = Organizer(directory_m, filetype_m)
-    organizer.compile_files()
+    tool_decision = input(f'Would you like to organize by file type or remove empty folders? Type Org to organize and Rem to remove.')
+    
+    if tool_decision == "Org" or "org":
+        directory_m = input(f'Input the full directory path you want to target: ')
+        filetype_m = input(f'Input the filetype to target: ')
+        organizer = Organizer(directory_m, filetype_m)
+        organizer.compile_files()
+    else:
+        print(f"{tool_decision} is not a choice from the provided options.")
